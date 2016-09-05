@@ -57,8 +57,8 @@ for (i in 1:length(column_names))
   column_names[i] = gsub("[Gg]yro","Gyro",column_names[i])
   column_names[i] = gsub("AccMag","AccMagnitude",column_names[i])
   column_names[i] = gsub("([Bb]odyaccjerkmag)","BodyAccJerkMagnitude",column_names[i])
-  column_names[i] = gsub("JerkMag","JerkMagnitude",column_names[i][i])
-  column_names[i]= gsub("GyroMag","GyroMagnitude",column_names[i][i])
+  column_names[i] = gsub("JerkMag","JerkMagnitude",column_names[i])
+  column_names[i]= gsub("GyroMag","GyroMagnitude",column_names[i])
 };
 colnames(mean_std_data)<-column_names
 
@@ -68,4 +68,4 @@ colnames(mean_std_data)<-column_names
 final= mean_std_data[,names(mean_std_data) != 'activity'];
 tidydata = aggregate(final[,names(final) != c('activity_ID','subject_ID')],by=list(activity_ID=final$activity_ID,subject_ID = final$subject_ID),mean);
 tidydata = merge(tidydata,activity,by='activity_ID',all.x=TRUE);
-write.table(tidydata, './tidydata.txt',row.names=TRUE,sep='\t')
+write.table(tidydata, './tidydata2.txt',row.names=F,sep='\t')
